@@ -3,6 +3,8 @@
 //
 
 #pragma once
+#include "afxwin.h"
+#include "SerialCom.h"
 
 
 // CMFCSerialCommDlg 대화 상자
@@ -12,6 +14,9 @@ class CMFCSerialCommDlg : public CDialogEx
 public:
 	CMFCSerialCommDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
 
+	CSerialComm* m_comm;
+	LRESULT		OnThreadClosed(WPARAM length, LPARAM lpara);
+	LRESULT		OnReceive(WPARAM length, LPARAM lpara);
 // 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_MFCSERIALCOMM_DIALOG };
@@ -36,4 +41,23 @@ public:
 	CString m_str_comport;
 	CComboBox m_combo_baudrate_list;
 	CString m_combo_baudrate;
+public:
+	BOOL comport_state;
+	afx_msg void OnBnClickedBtConnect();
+	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedButton3();
+	afx_msg void OnBnClickedButton4();
+	CEdit m_edit_rcv_view;
+	CEdit m_edit_send_data;
+	afx_msg void OnCbnSelchangeComboComport();
+	afx_msg void OnCbnSelchangeComboBaudrate();
+
+
+
+	afx_msg void OnStnClickedStatic1();
+	//CString m_static_led_1;
+	//CStatic m_Cstatic_LED_1;
+	CString m_Edit_LED_1;
+	CString m_Edit_LED_2;
+	CString m_Edit_LED_3;
 };
